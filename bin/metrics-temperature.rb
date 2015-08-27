@@ -40,7 +40,7 @@ class Sensors < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}.sensors"
 
-  def run # rubocop:disable all
+  def run
     raw = `sensors`
     sections = raw.split("\n\n")
     metrics = {}
