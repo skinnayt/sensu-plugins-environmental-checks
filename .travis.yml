@@ -1,19 +1,33 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
+- 1.9.3
+- 2.0
+- 2.1
+- 2.2
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
+    - sensu-plugin@sensu-plugins.io
     on_success: change
     on_failure: always
-
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+- gem build sensu-plugins-environmental-checks.gemspec
+- gem install sensu-plugins-environmental-checks-*.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: GElkMJX5T3vrHA+Zg0lShi2S+Y5QHvlj3BAtOBPgoJIhZENr9UCZ1KS52s1ISkyAhFTDL0S+HpsU0pVD1zX6ou/yZYMoLi4eUphj/waDE//la2Azp5Iab/a/vCppNT2fimBj6VFOQCnu+WT9Z5WHCTHK1vqoo87+YmyfVm1hBz8=
+  gem: sensu-plugins-environmental-checks
+  on:
+    tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    repo: sensu-plugins/sensu-plugins-environmental-checks
