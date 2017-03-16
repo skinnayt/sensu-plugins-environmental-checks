@@ -4,9 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- made metrics aware of multiple chips (@GhostLyrics)
+- made metrics also collect power draw (@GhostLyrics)
+- support for Ruby 2.3.0 (@eheydrick)
+
+### Removed
+- support for Ruby < 2 (@eheydrick)
+
 ### Changed
-- made metrics aware of multiple chips
-- made metrics also collect power draw
+- Rubocop upgrade and cleanup
 
 ## [0.0.3] - 2015-07-14
 ### Changed
