@@ -27,6 +27,12 @@ Multiple chips are supported and labelled by the chip name (e.g. `sensors.corete
 
 *If you do not get all of the listed values, your mainboard probably does not support the features. To check, you can query it yourself by running* `sensors` *or* `sensors -A` *respectively.*
 
+### check-temperature.rb
+
+#### checks
+
+Maps *high* and *crit* values as reported by `lm-sensors` to warning and critical status respectivley.
+
 ## Usage
 
 To collect metrics with the scheme of your choice:
