@@ -6,6 +6,7 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ## [Unreleased]
 ### Breaking Changes
 - Dropped support for Ruby < 2.3 as it is EOLed (@jaredledvina)
+- Bump `sensu-plugin` dependency from `~> 2.0` to `~> 4.0` you can read the changelog entries for [4.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#400---2018-02-17) and [3.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#300---2018-12-04) (@jaredledvina)
 
 ### Changed
 - Update Rubocop to 0.50 and appease the cops (@jaredledvina)
