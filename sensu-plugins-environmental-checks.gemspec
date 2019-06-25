@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'date'
 require_relative 'lib/sensu-plugins-environmental-checks'
 
-Gem::Specification.new do |s|
+Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.authors                = ['Sensu Plugins and contributors']
   s.date                   = Date.today.to_s
   s.description            = 'This plugin provides native environmental instrumentation
                               for metrics collection, including: temperature via `sensors`'
   s.email                  = '<sensu-users@googlegroups.com>'
   s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
-  s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
+  s.files                  = Dir.glob('{bin,lib}/**/*') + %w[LICENSE README.md CHANGELOG.md]
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-environmental-checks'
   s.license                = 'MIT'
   s.metadata               = { 'maintainer'         => '',
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry',                       '~> 0.10'
   s.add_development_dependency 'rake',                      '~> 12.3'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
-  s.add_development_dependency 'rubocop',                   '~> 0.40.0'
+  s.add_development_dependency 'rubocop',                   '~> 0.50.0'
   s.add_development_dependency 'rspec',                     '~> 3.4'
   s.add_development_dependency 'yard',                      '~> 0.8'
 end

@@ -7,6 +7,9 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Breaking Changes
 - Dropped support for Ruby < 2.3 as it is EOLed (@jaredledvina)
 
+### Changed
+- Update Rubocop to 0.50 and appease the cops (@jaredledvina)
+
 ## [1.3.0] - 2019-05-23
 ### Added
 - `metrics-temperature.rb`: support for Intel Gen 6+ CPUs(@mdzidic)

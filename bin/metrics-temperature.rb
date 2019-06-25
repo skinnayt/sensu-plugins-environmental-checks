@@ -1,5 +1,4 @@
 #! /usr/bin/env ruby
-#  encoding: UTF-8
 #   <script name>
 #
 # DESCRIPTION:
@@ -64,7 +63,7 @@ class Sensors < Sensu::Plugin::Metric::CLI::Graphite
             key = [chip, key].join('.')
             metrics[key] = value
           end
-        rescue
+        rescue StandardError
           print "malformed section from sensors: #{line}" + "\n"
         end
       end
