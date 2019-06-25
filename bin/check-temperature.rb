@@ -65,7 +65,7 @@ class CheckTemperature < Sensu::Plugin::Check::CLI
             current, high, critical = value.scan(/\+(\d+\.\d+)/i)
             metrics[key] = [current[0], high[0], critical[0]].map(&:to_f)
           end
-        rescue
+        rescue StandardError
           print "malformed section from sensors: #{line}" + "\n"
         end
       end
