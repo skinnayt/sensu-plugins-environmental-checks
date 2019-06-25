@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Breaking Changes
+- Dropped support for Ruby < 2.3 as it is EOLed (@jaredledvina)
 
 ## [1.3.0] - 2019-05-23
 ### Added
