@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SensuPluginsEnvironmentalChecks
   module Version
     MAJOR = 1
