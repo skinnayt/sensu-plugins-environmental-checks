@@ -11,6 +11,10 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Changed
 - Update Rubocop to 0.50 and appease the cops (@jaredledvina)
 
+## [1.3.1] - 2022-12-31
+### Changed
+- `check-temperature.rb`: parse negative values
+
 ## [1.3.0] - 2019-05-23
 ### Added
 - `metrics-temperature.rb`: support for Intel Gen 6+ CPUs(@mdzidic)
