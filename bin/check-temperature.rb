@@ -64,7 +64,7 @@ class CheckTemperature < Sensu::Plugin::Check::CLI
           key, value = line.split(':')
           key = key.downcase.gsub(/\s/, '')
           if key.start_with?('temp', 'core', 'loc', 'physical')
-            current, high, critical = value.scan(/\+(\d+\.\d+)/i)
+            current, high, critical = value.scan(/[-+]+(\d+\.\d+)/i)
             metrics[key] = [current[0], high[0], critical[0]].map(&:to_f)
           end
         rescue StandardError
