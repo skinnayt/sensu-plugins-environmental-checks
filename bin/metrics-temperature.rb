@@ -31,6 +31,7 @@
 
 require 'sensu-plugin/metric/cli'
 require 'socket'
+require 'json'
 
 #
 # Sensors
@@ -42,31 +43,33 @@ class Sensors < Sensu::Plugin::Metric::CLI::Graphite
          default: "#{Socket.gethostname}.sensors"
 
   def run
-    raw = `sensors -A`
-    sections = raw.split("\n\n")
-    metrics = {}
+    raw = `sensors -Aj`
+    metrics = parse_json(raw)
+    if metrics.empty? || metrics.nil?
+      raw = `sensors -A`
+      sections = raw.split("\n\n")
+      metrics = {}
 
-    # split into sections for each chip
-    sections.each do |section|
-      lines = section.split("\n")
+      # split into sections for each chip
+      sections.each do |section|
+        lines = section.split("\n")
 
-      # the first line is the chip name
-      chip =  lines[0]
+        # the first line is the chip name
+        chip =  lines[0]
 
-      # all other lines are metrics
-      lines[1..-1].each do |line|
-        begin
+        # all other lines are metrics
+        lines[1..].each do |line|
           key, value = line.split(':')
           key = key.downcase.gsub(/\s/, '')
 
           if key.start_with?('temp', 'core', 'loc', 'power', 'physical', 'packageid')
-            value.strip =~ /[\+\-]?(\d+(\.\d)?)/
+            value.strip =~ /[+-]?(\d+(\.\d)?)/
             value = Regexp.last_match[1]
             key = [chip, key].join('.')
             metrics[key] = value
           end
         rescue StandardError
-          print "malformed section from sensors: #{line}" + "\n"
+          print "malformed section from sensors: #{line}\n"
         end
       end
     end
@@ -76,4 +79,24 @@ class Sensors < Sensu::Plugin::Metric::CLI::Graphite
     end
     ok
   end
+end
+
+def parse_json(raw)
+  rawj = JSON.parse(raw)
+  metrics = {}
+  rawj.each do |chip, section|
+    section.each do |key, value|
+      key = key.downcase.gsub(/\s/, '')
+      next unless key.start_with?('temp', 'core', 'loc', 'power', 'physical', 'packageid')
+
+      value.each do |k, v|
+        if k.end_with?('input')
+          metrics[[chip, key].join('.')] = v
+        end
+      end
+    end
+  end
+  metrics
+rescue JSON::ParserError
+  {}
 end
